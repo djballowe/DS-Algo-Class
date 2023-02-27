@@ -10,17 +10,27 @@
 
 // Time Complexity - O(n)
 
-function findLongestSubstring(string) {
-  let longestSub = 0;
-  let currentLongest = 0;
-  let start = 0;
-  let end = 0;
-  //   let currentLetter = string[start];
-  let currentString = {};
-  for (let i = 0; i < string.length; i++) {
-    
+function findLongestSubstring(s) {
+  if (s.length === 1) {
+    return 1;
   }
-  console.log(longestSub);
+  let seen = {};
+  let maxLen = 0;
+  let start = 0;
+  for (let i = 0; i < s.length; i++) {
+    let key = s[i];
+    if (key in seen && seen[key] >= start) {
+      maxLen = Math.max(maxLen, i - start);
+      start = seen[key] + 1;
+      seen[key] = i;
+    } else {
+      seen[key] = i;
+      if (i === s.length - 1) {
+        maxLen = Math.max(maxLen, i - start + 1);
+      }
+    }
+  }
+  return Object.keys(seen).length === s.length ? s.length : maxLen;
 }
 
 findLongestSubstring("longestsubstring");
