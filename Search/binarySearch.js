@@ -8,7 +8,7 @@ function binarySearch(nums, target) {
     } else if (nums[middle] > target) {
       end = middle - 1;
       middle = Math.floor((start + end) / 2);
-    } else if (nums[middle] < target) {
+    } else {
       start = middle + 1;
       middle = Math.floor((start + end) / 2);
     }
@@ -16,4 +16,4 @@ function binarySearch(nums, target) {
   return -1;
 }
 
-console.log((binarySearch([1,2,3,4,5],6)));
+console.log((binarySearch([1,2,3,4,5],5)));
